@@ -1,15 +1,18 @@
 <template>
-  <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
-  <div id="app">
-    <HelloWorld msg="Hello Vue 3 + Vite" />
-  </div>
+  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
 </template>
 
-<script setup>
+<script lang="ts">
+import { defineComponent } from 'vue'
 import HelloWorld from './components/HelloWorld.vue'
 
-// This starter template is using Vue 3 experimental <script setup> SFCs
-// Check out https://github.com/vuejs/rfcs/blob/script-setup-2/active-rfcs/0000-script-setup.md
+export default defineComponent({
+  name: 'App',
+  components: {
+    HelloWorld
+  }
+})
 </script>
 
 <style>
@@ -19,7 +22,10 @@ import HelloWorld from './components/HelloWorld.vue'
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  height: 100vh;
   /* margin-top: 60px; */
+ width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
 }
 </style>
