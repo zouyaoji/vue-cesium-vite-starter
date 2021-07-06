@@ -33,7 +33,7 @@
     <code>components/HelloWorld.vue</code> to test hot module replacement.
   </p> -->
   <div class="home viewer">
-    <vc-viewer @ready="onViewerReady">
+    <vc-viewer>
       <vc-entity
         ref="entity"
         :billboard="billboard"
@@ -44,14 +44,14 @@
         @mouseover="onEntityEvt"
         @mouseout="onEntityEvt"
       >
-        <vc-graphics-rectangle
+        <!-- <vc-graphics-rectangle
           :coordinates="[130, 20, 80, 25]"
           material="green"
-        />
+        /> -->
       </vc-entity>
-      <vc-layer-imagery>
+      <!-- <vc-layer-imagery>
         <vc-provider-imagery-osm />
-      </vc-layer-imagery>
+      </vc-layer-imagery> -->
       <vc-navigation />
     </vc-viewer>
   </div>
