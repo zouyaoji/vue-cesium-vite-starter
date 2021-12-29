@@ -37,7 +37,7 @@
       <vc-entity
         ref="entity"
         :billboard="billboard"
-        :position="{ lng: 108, lat: 32 }"
+        :position="[108, 32]"
         :point="point"
         :label="label"
         @click="onEntityEvt"

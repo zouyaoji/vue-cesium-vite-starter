@@ -1,7 +1,15 @@
+/*
+ * @Author: zouyaoji@https://github.com/zouyaoji
+ * @Date: 2021-12-29 13:45:20
+ * @LastEditTime: 2021-12-29 13:47:20
+ * @LastEditors: zouyaoji
+ * @Description:
+ * @FilePath: \vue-cesium-vite-starter\src\main.ts
+ */
 import { createApp } from 'vue'
 import App from './App.vue'
 import VueCesium from 'vue-cesium'
-import 'vue-cesium/lib/theme-default/index.css'
+import 'vue-cesium/dist/index.css'
 
 if (typeof (window as any).global === 'undefined') {
   (window as any).global = window
