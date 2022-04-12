@@ -1,14 +1,14 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-29 13:45:20
- * @LastEditTime: 2022-04-12 17:58:07
+ * @LastEditTime: 2022-04-12 21:38:31
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-vite-starter\src\components\HelloWorld.vue
 -->
 <template>
   <div class="home viewer">
-    <vc-viewer @ready="onViewerReady">
+    <vc-viewer ref="viewerRef" @ready="onViewerReady">
       <vc-entity
         ref="entity"
         :billboard="billboard"
@@ -40,34 +40,44 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { VcDrawingsProps } from 'vue-cesium'
-import { VcReadyObject } from 'vue-cesium/es/utils/types'
+import {
+  VcDrawingsProps,
+  VcGraphicsBillboardProps,
+  VcGraphicsLabelProps,
+  VcGraphicsPointProps,
+  VcViewerRef,
+} from 'vue-cesium'
+import { VcPickEvent, VcReadyObject } from 'vue-cesium/es/utils/types'
 defineProps({
   msg: {
     type: String,
     required: true,
   },
 })
+const viewerRef = ref<VcViewerRef>(null)
+// for debug only
+// window.viewerRef = viewerRef
+
 const mainFabOpts: VcDrawingsProps['mainFabOpts'] = {
   direction: 'left',
 }
-const point = {
+const point: VcGraphicsPointProps = {
   pixelSize: 28,
   color: 'red',
 }
-const label = {
+const label: VcGraphicsLabelProps = {
   text: 'Hello VueCesium',
   pixelOffset: [0, 80],
   fillColor: 'red',
 }
-const billboard = ref({
+const billboard = ref<VcGraphicsBillboardProps>({
   image: 'https://zouyaoji.top/vue-cesium/favicon.png',
   scale: 0.5,
 })
 const onViewerReady = (readyObj: VcReadyObject) => {
   console.log(readyObj.viewer)
 }
-const onEntityEvt = e => {
+const onEntityEvt = (e: VcPickEvent) => {
   console.log(e)
   if (e.type === 'onmouseover') {
     billboard.value = {
