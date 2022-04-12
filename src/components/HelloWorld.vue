@@ -1,7 +1,7 @@
 <!--
  * @Author: zouyaoji@https://github.com/zouyaoji
  * @Date: 2021-12-29 13:45:20
- * @LastEditTime: 2022-02-14 00:37:58
+ * @LastEditTime: 2022-04-12 17:58:07
  * @LastEditors: zouyaoji
  * @Description:
  * @FilePath: \vue-cesium-vite-starter\src\components\HelloWorld.vue
@@ -28,13 +28,19 @@
         <vc-imagery-provider-osm />
       </vc-layer-imagery>
       <vc-navigation />
-      <vc-measurements :offset="[0, 40]" />
+      <vc-measurements :offset="[0, 40]" :on-fab-updated="onFabUpdated" />
+      <vc-drawings
+        position="bottom-right"
+        :main-fab-opts="mainFabOpts"
+        :offset="[0, 40]"
+      />
     </vc-viewer>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { VcDrawingsProps } from 'vue-cesium'
 import { VcReadyObject } from 'vue-cesium/es/utils/types'
 defineProps({
   msg: {
@@ -42,7 +48,9 @@ defineProps({
     required: true,
   },
 })
-const count = ref(0)
+const mainFabOpts: VcDrawingsProps['mainFabOpts'] = {
+  direction: 'left',
+}
 const point = {
   pixelSize: 28,
   color: 'red',
@@ -64,14 +72,18 @@ const onEntityEvt = e => {
   if (e.type === 'onmouseover') {
     billboard.value = {
       image: 'https://zouyaoji.top/vue-cesium/favicon.png',
-      scale: 0.6
+      scale: 0.6,
     }
   } else if (e.type === 'onmouseout') {
     billboard.value = {
       image: 'https://zouyaoji.top/vue-cesium/favicon.png',
-      scale: 0.5
+      scale: 0.5,
     }
   }
+}
+// 在下个版本修复此props错误
+const onFabUpdated = () => {
+  //
 }
 </script>
 
